@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import MyText from './components/MyText/MyText';
+import TimeOfDay from './components/TimeOfDay/TimeOfDay';
 
 const App = () => {
   const [dialogVisible, setDialogVisible] = useState(true);
@@ -12,7 +13,7 @@ const App = () => {
 
   const handleDialogClose = (name) => {
     setDialogVisible(false);
-    setDisplay(`Hi, ${name}!`);
+    setDisplay(name);
   };
 
   const handleTextClick = () => {
@@ -21,7 +22,9 @@ const App = () => {
 
   return (
     <SafeAreaView style = {{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    <Text style = {{fontSize: 30, fontWeight: 'bold', color: 'red'}} onPress = {() => handleTextClick()}>{display}</Text>
+    <Text style = {{fontSize: 30, fontWeight: 'bold', color: 'red'}} onPress = {() => handleTextClick()}>
+    <TimeOfDay name={display} />
+    </Text>
     {dialogVisible && <MyText visible = {dialogVisible} onClose = {handleDialogClose} />}
     </SafeAreaView>
   );
@@ -30,6 +33,7 @@ const App = () => {
 
 
 export default App;
+
 
 
 
